@@ -44,9 +44,14 @@ class str
     // append extends the string by appending additional characters at the end of its current value:
     void append(const str& str);
 
+    void operator=(const str& str); 
+
+    void operator+(const str& str); 
 
   // TODO 3. Implement the following swap functions that exchanges the values of two strings
   friend void swap(str &, str &);
+  friend ostream & operator<<(ostream & os, const str& s); 
+  friend istream & operator>>(istream & is, str& s); 
 };
 
 #endif

@@ -2,6 +2,7 @@
 
 #include "str.h"
 #include <cstring>
+#include <iostream> 
 
 str::str() 
 {
@@ -87,6 +88,51 @@ void swap(str& x, str& y)
   x._n = y._n;
   y._n = ntmp;
   
+}
+
+//operator overloading functions 
+void str::operator=(const str& str) {
+  _n = str._n; 
+    _buf = str._buf; 
+}
+
+void str::operator+(const str& s) {
+  char *p = new char[_n + s._n];
+
+    int i;
+    
+    for (i = 0; i < _n; ++i) 
+      p[i] = _buf[i];
+    
+    for (int j = 0; j < s._n; ++i,++j) 
+      p[i] = s._buf[j];
+
+    if (_buf) 
+      delete [] _buf;
+
+    _buf = p;  
+    _n = _n + s._n;
+}
+
+ostream & operator<<(ostream & os, const str& s) {
+  os << "string: " << s._buf << endl; 
+  return os; 
+}
+
+istream & operator>>(istream & is, str& s) {
+  char p[100]; 
+
+  cout << "Please enter a string: ";
+  cin >> p; 
+
+  s._n = strlen(p); 
+  s._buf = new char[s._n + 1]; 
+
+  for (int i=0; i < s._n; i++) {
+    s._buf[i] = p[i]; 
+  } 
+
+  return is; 
 }
 
 
